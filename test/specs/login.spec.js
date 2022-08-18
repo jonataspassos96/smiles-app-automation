@@ -11,6 +11,5 @@ describe('Deve realizar o passo a passo de Login', () => {
         const title = await $('//android.widget.TextView[@text="Seja bem-vindo."]')
 
         await expect(title).toHaveText('Seja bem-vindo.')
-        // await expect(textAssertion).toHaveText('You selected: 1 , Command two')
     })
 })
