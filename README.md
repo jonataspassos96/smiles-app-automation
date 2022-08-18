@@ -1,5 +1,9 @@
 # Automating-the-Smiles-App
 
+<h1 align="left">
+    <img src="images/logo-smiles.png" width="250px">
+</h1>
+
 ## 👨🏻‍💻 Como executar o projeto
 
 ### JAVA
