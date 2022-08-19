@@ -4,7 +4,7 @@
     <img src="images/logo-smiles.png" width="250px">
 </h1>
 
-## 👨🏻‍💻 Como executar o projeto
+## 👨🏻‍💻 Como implementar o projeto do zero
 
 ### JAVA
 - [x] Instalar JDK 11.0.16 (https://www.oracle.com/java/technologies/downloads/#java11-mac)
