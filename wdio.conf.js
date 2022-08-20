@@ -54,10 +54,10 @@ exports.config = {
     //
     capabilities: [{
         platformName: 'Android',
-        'appium:platformVersion': '11.0',
-        'appium:deviceName': 'Pixel 3',
+        'appium:platformVersion': '10',
+        'appium:deviceName': 'Nexus S',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.205.25.24472 (1).apk')
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.205.25.24472.apk')
     }],
     //
     // ===================
