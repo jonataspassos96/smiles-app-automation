@@ -1,11 +1,8 @@
-import testConfig from "../../test-config.json"
-import fs from 'fs';
+import BaseConfig from "../../config/BaseConfig";
 import androidSignInScreen from "./android/signIn.screen"
 import androidWelcomeScreen from "./android/welcome.screen";
 
-const config = JSON.parse(fs.readFileSync(__dirname + "../../test-config.js", "utf-8"));
-
 export default {
-    SignInScreen: config.platform == 'android' ? androidSignInScreen : null,
-    WelcomeScreen: config.platform == 'android' ? androidWelcomeScreen : null
+    SignInScreen: BaseConfig.platform == 'android' ? androidSignInScreen : null,
+    WelcomeScreen: BaseConfig.platform == 'android' ? androidWelcomeScreen : null
 }
