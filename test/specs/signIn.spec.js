@@ -1,50 +1,69 @@
-const { AppiumDriver } = require("appium/build/lib/appium")
+import SignInScreen from "../screens/android/signIn.screen";
 
-describe('Login', () => {
-    beforeEach(async () => {
-        await driver.launchApp();
+describe('SignIn', () => {
+    before(async () => {
+        await SignInScreen.skipPageWelcome()
+    })
 
-        await $('//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_deny_button"]').click()
+    it('Deve entrar na tela de login e reenderizar todos os elementos', async () => {
+        await expect(SignInScreen.mainTitle).toBeDisplayed()
 
-        await $('//android.widget.TextView[@resource-id="com.pontomobi.smileshmg:id/btn_intro_jump"]').click()
+        await expect(SignInScreen.backToTheWelcomeScreen).toBeDisplayed()
 
-        await $('//android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_deny_and_dont_ask_again_button"]').click()
+        await expect(SignInScreen.inputMemberNumber).toBeDisplayed()
 
-        await $('//android.widget.Button[@resource-id="com.pontomobi.smileshmg:id/lgpd_accept_agreed"]').click()
+        await expect(SignInScreen.inputPassword).toBeDisplayed()
 
-        const title = await $('//android.widget.TextView[@text="Seja bem-vindo."]')
+        await expect(SignInScreen.txtRememberSmilesNumberOrCPF).toBeDisplayed()
 
-        await expect(title).toHaveText('Seja bem-vindo.')
+        await expect(SignInScreen.toggleClickableRemember).toBeDisplayed()
 
-        await $('~btn_login_btn_signIn').click()
+        await expect(SignInScreen.btnSignIn).toBeDisplayed()
+
+        await expect(SignInScreen.btnForgotSmilesNumber).toBeDisplayed()
+
+        await expect(SignInScreen.btnForgotPassword).toBeDisplayed()
+
+        await expect(SignInScreen.txtDidYouReceiveYourGolSmilesCreditCard).toBeDisplayed()
+    })
+
+    it('Deve exibir uma mensagem de erro ao inserir dados inválidos', async () => {
+        const loginInput = await SignInScreen.inputMemberNumber
+        await loginInput.setValue('107649706')
+
+        const passwordInput = await SignInScreen.inputPassword
+        await passwordInput.setValue('1234')
+
+        await SignInScreen.btnSignIn.click()
+
+        await driver.setTimeout({ 'script': 600000 })
+        await driver.executeAsync(async (done) => {
+            const text = await SignInScreen.memberNumberOrPasswordIsInvalid
+
+            expect(text)
+                .toHaveText('Usuário não encontrado ou Senha está inválida.')
+
+            await SignInScreen.btnContinueInSignInScreen.click()
+
+            setTimeout(done, 590000)
+        })
     })
 
     it('Deve realizar o login e entrar na página principal', async () => {
-        const loginInput = await $('~txt_login_input')
-        await loginInput.setValue('123 479 425')
+        const loginInput = await SignInScreen.inputMemberNumber
+        await loginInput.setValue('107649706')
 
-        const passwordInput = await $('~txt_login_password_input')
+        const passwordInput = await SignInScreen.inputPassword
         await passwordInput.setValue('1010')
 
-        await $('~btn_login_btn_signIn').click()
+        await SignInScreen.btnSignIn.click()
 
-        const userName = await $('//android.widget.TextView[@text="Olá Matias"]')
-        expect(userName).toHaveText('Olá Matias')
-    })
-
-    it('Deve exibir mensagem de erro ao digitar dados inválidos', async () => {
-        const loginInput = await $('~txt_login_input')
-        await loginInput.setValue('123 479 425')
-
-        const passwordInput = await $('~txt_login_password_input')
-        await passwordInput.setValue('1234')
-
-        const errorMessage = await $('//android.widget.TextView[@resource-id="com.pontomobi.smileshmg:id/dialog_smiles_text"]')
-        expect(errorMessage).toHaveText('Usuário não encontrado ou Senha está inválida.')
+        const userName = await $('//*[@resource-id="com.pontomobi.smileshmg:id/txt_name"]')
+        expect(userName).toHaveText('Olá Ale')
     })
 })
 
-describe('Esqueceu sua senha', () => {
+describe.skip('Esqueceu sua senha', () => {
     beforeEach(async () => {
         await driver.launchApp();
 
@@ -121,7 +140,7 @@ describe('Esqueceu sua senha', () => {
     })
 })
 
-describe.only('Esqueceu seu número Smiles', async () => {
+describe.skip('Esqueceu seu número Smiles', async () => {
     beforeEach(async () => {
         await driver.launchApp();
 

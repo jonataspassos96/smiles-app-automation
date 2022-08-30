@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 
 exports.config = {
     //
@@ -23,9 +23,7 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
-    specs: [
-        './test/specs/**/*.js'
-    ],
+    specs: ['./test/specs/welcome.spec.js'],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -46,7 +44,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -57,7 +55,8 @@ exports.config = {
         'appium:platformVersion': '10',
         'appium:deviceName': 'Nexus S',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.205.25.24472.apk')
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.207.6.24482.apk'),
+        'appium:autoGrantPermissions': true
     }],
     //
     // ===================
@@ -128,7 +127,9 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+    }]],
 
 
 

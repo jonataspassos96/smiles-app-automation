@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "types": [
+            "node",
+            "webdriverio/async"
+        ],
+        "module": "commonjs"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
