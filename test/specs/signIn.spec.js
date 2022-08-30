@@ -1,4 +1,3 @@
-//import SignInScreen from "../screens/android/signIn.screen";
 import { SignInScreen } from "../screens";
 
 describe('SignIn', () => {

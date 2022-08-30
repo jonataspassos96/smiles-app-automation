@@ -1,4 +1,4 @@
-import WelcomeScreen from "../screens/android/welcome.screen";
+import { WelcomeScreen } from "../screens";
 
 describe('Welcome', () => {
     it('Deve entrar no app e reenderizar a tela inicial', async () => {
