@@ -25,7 +25,7 @@ class SignInScreen {
         return $('//*[@resource-id="com.pontomobi.smileshmg:id/login_remember"]')
     }
 
-    get btnSignIn() {
+    get submitBtn() {
         return $('~btn_login_btn_signIn')
     }
 

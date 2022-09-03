@@ -1,4 +1,5 @@
-import { SignInScreen } from "../screens";
+import SignInScreen from '../screens/android/signIn.screen'
+import HomeScreen from '../screens/android/home.screen'
 
 describe('SignIn', () => {
     before(async () => {
@@ -18,7 +19,7 @@ describe('SignIn', () => {
 
         await expect(SignInScreen.toggleClickableRemember).toBeDisplayed()
 
-        await expect(SignInScreen.btnSignIn).toBeDisplayed()
+        await expect(SignInScreen.submitBtn).toBeDisplayed()
 
         await expect(SignInScreen.btnForgotSmilesNumber).toBeDisplayed()
 
@@ -34,19 +35,12 @@ describe('SignIn', () => {
         const passwordInput = await SignInScreen.inputPassword
         await passwordInput.setValue('1234')
 
-        await SignInScreen.btnSignIn.click()
+        await SignInScreen.submitBtn.click()
 
-        await driver.setTimeout({ 'script': 600000 })
-        await driver.executeAsync(async (done) => {
-            const text = await SignInScreen.memberNumberOrPasswordIsInvalid
+        expect(await SignInScreen.memberNumberOrPasswordIsInvalid.waitForDisplayed())
+            .toHaveText('Usuário não encontrado ou Senha está inválida.')
 
-            expect(text)
-                .toHaveText('Usuário não encontrado ou Senha está inválida.')
-
-            await SignInScreen.btnContinueInSignInScreen.click()
-
-            setTimeout(done, 590000)
-        })
+        await SignInScreen.btnContinueInSignInScreen.click()
     })
 
     it('Deve realizar o login e entrar na página principal', async () => {
@@ -56,10 +50,15 @@ describe('SignIn', () => {
         const passwordInput = await SignInScreen.inputPassword
         await passwordInput.setValue('1010')
 
-        await SignInScreen.btnSignIn.click()
+        await SignInScreen.submitBtn.click()
 
-        const userName = await $('//*[@resource-id="com.pontomobi.smileshmg:id/txt_name"]')
-        expect(userName).toHaveText('Olá Ale')
+        await $('//*[@text="Fingerprint"]').waitForDisplayed()
+
+        await $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)')
+
+        await HomeScreen.fingerPrint.click()
+
+        expect(await HomeScreen.userName).toHaveText('Olá Dallas')
     })
 })
 
