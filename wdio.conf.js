@@ -23,7 +23,7 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
-    specs: ['./test/specs/signIn.spec.js'],
+    specs: ['./test/specs/forgotYourPassword.spec.js'],
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -55,7 +55,7 @@ exports.config = {
         'appium:platformVersion': '10',
         'appium:deviceName': 'Nexus S',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.207.6.24482.apk'),
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-release-2.207.0.apk'),
         'appium:autoGrantPermissions': true
     }],
     //
