@@ -60,7 +60,7 @@ class SignInScreen {
 
         await WelcomeScreen.btnAcceptAgreed.click()
 
-        await WelcomeScreen.btnSingIn.click()
+        await WelcomeScreen.singInBtn.click()
     }
 }
 

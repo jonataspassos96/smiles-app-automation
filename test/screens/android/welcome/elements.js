@@ -1,4 +1,4 @@
-class WelcomeScreen {
+class Elements {
     get btnIntroJump() {
         return $('//*[@resource-id="com.pontomobi.smileshmg:id/btn_intro_jump"]')
     }
@@ -15,11 +15,11 @@ class WelcomeScreen {
         return $('//*[@resource-id="com.pontomobi.smileshmg:id/login_welcome_user"]')
     }
 
-    get btnSingIn() {
+    get singInBtn() {
         return $('~btn_login_btn_signIn')
     }
 
-    get btnSignUp() {
+    get signUpBtn() {
         return $('~btn_login_btn_signUp')
     }
 
@@ -28,4 +28,4 @@ class WelcomeScreen {
     }
 }
 
-export default new WelcomeScreen()
+export default new Elements()
