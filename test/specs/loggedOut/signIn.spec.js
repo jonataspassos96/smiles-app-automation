@@ -1,64 +1,30 @@
-import SignInScreen from '../screens/android/signIn.screen'
-import HomeScreen from '../screens/android/home.screen'
+import SignInScript from '../../screens/scripts/loggedOut/SignInScript'
+import users from '../../../config/dataMass/users'
+
+const { userHMG: user } = users
 
 describe('SignIn', () => {
-    before(async () => {
-        await SignInScreen.skipPageWelcome()
-    })
-
     it('Deve entrar na tela de login e reenderizar todos os elementos', async () => {
-        await expect(SignInScreen.mainTitle).toBeDisplayed()
-
-        await expect(SignInScreen.backToTheWelcomeScreen).toBeDisplayed()
-
-        await expect(SignInScreen.inputMemberNumber).toBeDisplayed()
-
-        await expect(SignInScreen.inputPassword).toBeDisplayed()
-
-        await expect(SignInScreen.txtRememberSmilesNumberOrCPF).toBeDisplayed()
-
-        await expect(SignInScreen.toggleClickableRemember).toBeDisplayed()
-
-        await expect(SignInScreen.submitBtn).toBeDisplayed()
-
-        await expect(SignInScreen.btnForgotSmilesNumber).toBeDisplayed()
-
-        await expect(SignInScreen.btnForgotPassword).toBeDisplayed()
-
-        await expect(SignInScreen.txtDidYouReceiveYourGolSmilesCreditCard).toBeDisplayed()
+        await SignInScript.acess()
+        await SignInScript.validateTheElementsDisplayedOnTheScreen()
     })
 
-    it('Deve exibir uma mensagem de erro ao inserir dados inválidos', async () => {
-        const loginInput = await SignInScreen.inputMemberNumber
-        await loginInput.setValue('107649706')
+    it('Deve exibir uma mensagem de erro ao inserir uma senha inválida', async () => {
+        await SignInScript.fillForm(user.smilesNumber, '1234')
+        await SignInScript.submit()
+        await SignInScript.validateErrorRequest()
+    })
 
-        const passwordInput = await SignInScreen.inputPassword
-        await passwordInput.setValue('1234')
-
-        await SignInScreen.submitBtn.click()
-
-        expect(await SignInScreen.memberNumberOrPasswordIsInvalid.waitForDisplayed())
-            .toHaveText('Usuário não encontrado ou Senha está inválida.')
-
-        await SignInScreen.btnContinueInSignInScreen.click()
+    it('Deve exibir uma mensagem de erro ao inserir um N˚ Smiles/CPF inválido', async () => {
+        await SignInScript.fillForm('123123123', user.password)
+        await SignInScript.submit()
+        await SignInScript.validateErrorRequest()
     })
 
     it('Deve realizar o login e entrar na página principal', async () => {
-        const loginInput = await SignInScreen.inputMemberNumber
-        await loginInput.setValue('107649706')
-
-        const passwordInput = await SignInScreen.inputPassword
-        await passwordInput.setValue('1010')
-
-        await SignInScreen.submitBtn.click()
-
-        await $('//*[@text="Fingerprint"]').waitForDisplayed()
-
-        await $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)')
-
-        await HomeScreen.fingerPrint.click()
-
-        expect(await HomeScreen.userName).toHaveText('Olá Dallas')
+        await SignInScript.fillForm(user.smilesNumber, user.password)
+        await SignInScript.submit()
+        await SignInScript.sucessRequest()
     })
 })
 

@@ -1,6 +1,6 @@
 import BaseConfig from "../../config/BaseConfig";
-import androidSignInScreen from "./android/signIn.screen"
-import androidWelcomeScreen from "./android/welcome.screen";
+import androidSignInScreen from "./elements/android/signIn.screen"
+import androidWelcomeScreen from "./elements/android/loggedOut/WelcomeScreen";
 
 export default {
     SignInScreen: BaseConfig.platform == 'android' ? androidSignInScreen : null,

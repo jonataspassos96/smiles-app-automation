@@ -1,3 +1,4 @@
 export default {
-    platform: "android"
+    platform: 'android',
+    environment: 'hmg'
 }
