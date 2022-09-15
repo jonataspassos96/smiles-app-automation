@@ -15,16 +15,20 @@ class ForgotYourPasswordScreen {
         return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/activity_title_subtitle"]`)
     }
 
-    get newEmail() {
-        return $('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText"]')
-    }
-
-    get confirmNewEmail() {
-        return $('/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.EditText"]')
+    get newEmailEntries() {
+        return $$(`//*[@resource-id="com.pontomobi.smiles${env}:id/editText"]`)
     }
 
     get inputMemberNumber() {
         return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/editText"]`)
+    }
+
+    get selectTheAnswer() {
+        return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/editText"]`)
+    }
+
+    get answer() {
+        return $(`//*[@content-desc="btn_filter_item"]`)
     }
 
     get nextBtn() {

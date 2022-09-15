@@ -8,21 +8,25 @@ class forgotYourPasswordScript {
     async acess() {
         await WelcomeScript.acess()
         await WelcomeScript.clickSignInBtn()
+        await SignInScript.clickForgotPassword()
     }
 
-    async recoverPasswordWithTheSameEmail(cpfOrSmilesNumber, maskedEmail) {
-        await SignInScript.clickForgotPassword()
-
+    async fillFormWithSmilesNumberOrCpf(cpfOrSmilesNumber) {
         await expect(ForgotYourPasswordScreen.mainTitle)
             .toHaveText('RECUPERAR SENHA')
 
         await expect(ForgotYourPasswordScreen.infoTxt)
             .toHaveText('Por segurança, confirma pra gente sua identificação:')
 
-        await ForgotYourPasswordScreen.inputMemberNumber.setValue(cpfOrSmilesNumber)
+        await ForgotYourPasswordScreen.inputMemberNumber
+            .setValue(cpfOrSmilesNumber)
+    }
 
+    async submit() {
         await ForgotYourPasswordScreen.submitBtn.click()
+    }
 
+    async validateTheElementsDisplayedOnTheScreen(maskedEmail) {
         await expect(ForgotYourPasswordScreen.mainTitle)
             .toHaveText('ONDE QUER RECEBER A SENHA?')
 
@@ -33,9 +37,17 @@ class forgotYourPasswordScript {
             .toHaveText('E-mail cadastrado:')
 
         await expect(ForgotYourPasswordScreen.maskedEmail).toHaveText(maskedEmail)
+    }
 
+    async receivePasswordInThisEmailBtn() {
         await ForgotYourPasswordScreen.receivePasswordInThisEmailBtn.click()
+    }
 
+    async receiveInAnotherEmailBtn() {
+        await ForgotYourPasswordScreen.receiveInAnotherEmailBtn.click()
+    }
+
+    async recoverPasswordWithTheSameEmail() {
         if (await ForgotYourPasswordScreen.requestErrorTxt.isExisting()) {
             await ForgotYourPasswordScreen.requestErrorBtn.click()
 
@@ -53,44 +65,48 @@ class forgotYourPasswordScript {
         }
     }
 
-    async recoverPasswordWithAnotherEmail(cpfOrSmilesNumber) {
-        await SignInScript.clickForgotPassword()
-
-        await ForgotYourPasswordScreen.inputMemberNumber.setValue(cpfOrSmilesNumber)
-
-        await ForgotYourPasswordScreen.submitBtn.click()
-
-        await ForgotYourPasswordScreen.receiveInAnotherEmailBtn.click()
-
+    async fillInFormWithNewEmail() {
         await expect(ForgotYourPasswordScreen.mainTitle)
             .toHaveText('RECUPERAR SENHA')
 
         await expect(ForgotYourPasswordScreen.otherInfoTxt)
             .toHaveText('Digite um e-mail que você tem como conferir agora:')
 
-        await ForgotYourPasswordScreen.newEmail.setValue('teste@mail.com')
-        await ForgotYourPasswordScreen.confirmNewEmail.setValue('teste@mail.com')
+        const entries = await ForgotYourPasswordScreen.newEmailEntries
 
+        for (const entry of entries) {
+            await entry.setValue('teste@mail.com')
+        }
+    }
+
+    async nextBtn() {
         await ForgotYourPasswordScreen.nextBtn.click()
+    }
 
+    async fillQuestionnaires() {
         const questionnaires = ['Pergunta 01', 'Pergunta 02', 'Pergunta 03', 'Pergunta 04']
 
-        questionnaires.forEach(async (quiz) => {
+        for (const quiz of questionnaires) {
             await expect(ForgotYourPasswordScreen.mainTitle)
                 .toHaveText('PERGUNTA DE SEGURANÇA')
 
             await expect(ForgotYourPasswordScreen.quiz)
                 .toHaveText(quiz)
 
-            await ForgotYourPasswordScreen.nextBtn.click()
-        })
+            await ForgotYourPasswordScreen.selectTheAnswer.click()
+            await ForgotYourPasswordScreen.answer.click()
+            await this.nextBtn.click()
+        }
+    }
 
+    async recoverPasswordWithAnotherEmail() {
         await expect(ForgotYourPasswordScreen.titleAwaitAnalysis)
             .toHaveText('PRONTO! AGORA É SÓ AGUARDAR NOSSA ANÁLISE')
 
-        await ForgotYourPasswordScreen.nextBtn.click()
+        await this.nextBtn.click()
 
-        await WelcomeScreen.mainTitle.toHaveText('Seja bem-vindo.')
+        const title = await WelcomeScreen.mainTitle.getText()
+        expect(title).toEqual('Seja bem-vindo.')
     }
 }
 

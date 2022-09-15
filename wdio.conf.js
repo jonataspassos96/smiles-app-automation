@@ -55,7 +55,7 @@ exports.config = {
         'appium:platformVersion': '10',
         'appium:deviceName': 'Nexus S',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.207.8.24484.apk'),
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-release-2.208.0.apk'),
         'appium:autoGrantPermissions': true
     }],
     //
