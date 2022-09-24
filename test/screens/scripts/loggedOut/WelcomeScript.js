@@ -8,6 +8,7 @@ class WelcomeScript {
             await WelcomeScreen.btnDefaultPositive.click()
         }
 
+        await WelcomeScreen.btnAcceptAgreed.waitForDisplayed()
         await WelcomeScreen.btnAcceptAgreed.click()
     }
 

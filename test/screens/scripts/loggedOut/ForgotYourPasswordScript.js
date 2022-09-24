@@ -26,7 +26,14 @@ class forgotYourPasswordScript {
         await ForgotYourPasswordScreen.submitBtn.click()
     }
 
-    async validateTheElementsDisplayedOnTheScreen(maskedEmail) {
+    async userNotRegisteredModal() {
+        await expect(ForgotYourPasswordScreen.userNotRegisteredTxt)
+            .toHaveText('Usuário não cadastrado.')
+
+        await ForgotYourPasswordScreen.userNotRegisteredBtn.click()
+    }
+
+    async validateElementsOnMainScreen(maskedEmail) {
         await expect(ForgotYourPasswordScreen.mainTitle)
             .toHaveText('ONDE QUER RECEBER A SENHA?')
 
@@ -47,7 +54,7 @@ class forgotYourPasswordScript {
         await ForgotYourPasswordScreen.receiveInAnotherEmailBtn.click()
     }
 
-    async recoverPasswordWithTheSameEmail() {
+    async requestRecoverPasswordWithTheSameEmailSuccessfully() {
         if (await ForgotYourPasswordScreen.requestErrorTxt.isExisting()) {
             await ForgotYourPasswordScreen.requestErrorBtn.click()
 
@@ -65,13 +72,15 @@ class forgotYourPasswordScript {
         }
     }
 
-    async fillInFormWithNewEmail() {
+    async validateElementsOnTheNewEmailScreen() {
         await expect(ForgotYourPasswordScreen.mainTitle)
             .toHaveText('RECUPERAR SENHA')
 
         await expect(ForgotYourPasswordScreen.otherInfoTxt)
             .toHaveText('Digite um e-mail que você tem como conferir agora:')
+    }
 
+    async fillInFormWithNewEmail() {
         const entries = await ForgotYourPasswordScreen.newEmailEntries
 
         for (const entry of entries) {
@@ -95,7 +104,7 @@ class forgotYourPasswordScript {
 
             await ForgotYourPasswordScreen.selectTheAnswer.click()
             await ForgotYourPasswordScreen.answer.click()
-            await this.nextBtn.click()
+            await ForgotYourPasswordScreen.nextBtn.click()
         }
     }
 
@@ -103,7 +112,7 @@ class forgotYourPasswordScript {
         await expect(ForgotYourPasswordScreen.titleAwaitAnalysis)
             .toHaveText('PRONTO! AGORA É SÓ AGUARDAR NOSSA ANÁLISE')
 
-        await this.nextBtn.click()
+        await ForgotYourPasswordScreen.nextBtn.click()
 
         const title = await WelcomeScreen.mainTitle.getText()
         expect(title).toEqual('Seja bem-vindo.')

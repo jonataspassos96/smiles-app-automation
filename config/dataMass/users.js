@@ -1,9 +1,10 @@
 export default {
     userHMG: {
-        smilesNumber: '107649695',
-        cpf: '41681321106',
+        smilesNumber: '107669004',
+        cpf: '24671374900',
+        email: 'jonatas@gmail.com',
         password: '1010',
-        maskedEmail: '****106@gmail.com'
+        maskedEmail: '****tas@gmail.com'
     },
     userPRD: {
         smilesNumber: '107649695',

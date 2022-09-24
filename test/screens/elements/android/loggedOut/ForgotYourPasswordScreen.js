@@ -23,6 +23,14 @@ class ForgotYourPasswordScreen {
         return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/editText"]`)
     }
 
+    get userNotRegisteredTxt() {
+        return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/md_content"]`)
+    }
+
+    get userNotRegisteredBtn() {
+        return $(`//*[@text="OK"]`)
+    }
+
     get selectTheAnswer() {
         return $(`//*[@resource-id="com.pontomobi.smiles${env}:id/editText"]`)
     }

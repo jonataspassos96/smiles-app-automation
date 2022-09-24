@@ -1,5 +1,6 @@
 import WelcomeScript from './WelcomeScript'
 import SignInScreen from '../../elements/android/loggedOut/SignInScreen'
+// import CommonsScript from '../CommonsScript'
 
 class SignInScript {
     async acess() {
@@ -32,11 +33,24 @@ class SignInScript {
 
     async submit() {
         await SignInScreen.submitBtn.click()
+
+        // await CommonsScript.waitFinishRequest(
+        //     async () => {
+        //         if (attempts < 10) {
+        //             await this.submit(attempts + 1)
+        //         } else {
+        //             throw new Error()
+        //         }
+        //     }
+        // )
     }
 
     async validateErrorRequest() {
-        const element = await SignInScreen.memberNumberOrPasswordIsInvalid.waitForDisplayed()
-        expect(element).toHaveText('Usuário não encontrado ou Senha está inválida.')
+        console.log('ENTROU NO VALIDATE ERROR REQUEST');
+        await SignInScreen.memberNumberOrPasswordIsInvalid.waitForDisplayed()
+
+        const text = await SignInScreen.memberNumberOrPasswordIsInvalid.getText()
+        await expect(text).toEqual('Usuário não encontrado ou Senha está inválida.')
 
         await SignInScreen.continueInSignInScreenBtn.click()
     }
@@ -49,7 +63,7 @@ class SignInScript {
         await $('~btn_after').click()
 
         const userName = await $('//*[@resource-id="com.pontomobi.smileshmg:id/txt_name"]').getText()
-        expect(userName).toEqual('Olá Dallas')
+        expect(userName).toEqual('Olá Alves')
     }
 
     async clickForgotSmilesNumber() {
