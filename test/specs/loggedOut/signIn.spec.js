@@ -24,7 +24,7 @@ describe('SignIn', () => {
     it('Deve realizar o login e entrar na página principal', async () => {
         await SignInScript.fillForm(user.smilesNumber, user.password)
         await SignInScript.submit()
-        await SignInScript.sucessRequest()
+        await SignInScript.validateSucessRequest()
     })
 })
 

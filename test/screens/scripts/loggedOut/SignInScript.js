@@ -55,7 +55,7 @@ class SignInScript {
         await SignInScreen.continueInSignInScreenBtn.click()
     }
 
-    async sucessRequest() {
+    async validateSucessRequest() {
         await $('//*[@text="Fingerprint"]').waitForDisplayed()
 
         await $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)')

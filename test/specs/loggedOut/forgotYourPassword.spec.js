@@ -18,7 +18,7 @@ describe('FLuxo de Esqueceu sua senha?', () => {
             await ForgotYourPasswordScript.userNotRegisteredModal()
         })
 
-        it('Deve inserir o N˚ CPF inválido e exibir o modal de Erro', async () => {
+        it('Deve inserir o N˚ CPF inválido e exibir o modal de "Usuário não cadastrado."', async () => {
             await ForgotYourPasswordScript.fillFormWithSmilesNumberOrCpf('12312312300')
             await ForgotYourPasswordScript.submit()
             await ForgotYourPasswordScript.userNotRegisteredModal()

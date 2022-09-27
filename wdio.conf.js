@@ -23,7 +23,7 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
-    specs: ['./test/specs/**/signIn.spec.js'],
+    specs: ['./test/specs/**/forgotYourNumberSmiles.spec.js'],
     // suites: {
     //     loggedOut: [
     //         './test/specs/**/welcome.spec.js',
