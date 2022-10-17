@@ -13,7 +13,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@wdio/cli": "^7.20.9",
+        "@wdio/cli": "^7.25.2",
         "appium": "^2.0.0-beta.19"
     },
     "devDependencies": {

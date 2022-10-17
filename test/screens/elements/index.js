@@ -1,5 +1,5 @@
 import BaseConfig from "../../../config/BaseConfig";
-import androidSignInScreen from "./elements/android/signIn.screen"
+import androidSignInScreen from "./android/loggedOut/SignInScreen"
 import androidWelcomeScreen from "./android/loggedOut/WelcomeScreen";
 
 export default {

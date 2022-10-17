@@ -6,7 +6,7 @@ exports.config = {
     // Runner Configuration
     // ====================
     //
-    port: 4723,
+    port: 8000,
     //
     // ==================
     // Specify Test Files
@@ -59,10 +59,10 @@ exports.config = {
     //
     capabilities: [{
         platformName: 'Android',
-        'appium:platformVersion': '11',
-        'appium:deviceName': 'Pixel 3a',
+        'appium:platformVersion': '13',
+        'appium:deviceName': 'Pixel_3a_API_33_x86_64',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.208.23.24510.apk'),
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.209.1.24512.apk'),
         'appium:autoGrantPermissions': true
     }],
     //

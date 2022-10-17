@@ -1,38 +1,44 @@
-import WelcomeScreen from '../../elements/android/loggedOut/WelcomeScreen'
+import elements from '../../elements'
 
 class WelcomeScript {
-    async access() {
-        await WelcomeScreen.btnIntroJump.click()
 
-        if (await WelcomeScreen.btnDefaultPositive.isExisting()) {
-            await WelcomeScreen.btnDefaultPositive.click()
+    constructor() {
+        this.welcomeScreen = elements.WelcomeScreen
+    }
+
+    async access() {
+
+        await this.welcomeScreen.btnIntroJump.click()
+
+        if (await this.welcomeScreen.btnDefaultPositive.isExisting()) {
+            await this.welcomeScreen.btnDefaultPositive.click()
         }
 
-        await WelcomeScreen.btnAcceptAgreed.waitForDisplayed()
-        await WelcomeScreen.btnAcceptAgreed.click()
+        await this.welcomeScreen.btnAcceptAgreed.waitForDisplayed()
+        await this.welcomeScreen.btnAcceptAgreed.click()
     }
 
     async validateTheElementsDisplayedOnTheScreen() {
-        const title = await WelcomeScreen.mainTitle.getText()
+        const title = await this.welcomeScreen.mainTitle.getText()
         expect(title).toEqual('Seja bem-vindo.')
 
-        await expect(WelcomeScreen.singInBtn).toBeDisplayed()
+        await expect(this.welcomeScreen.singInBtn).toBeDisplayed()
 
-        await expect(WelcomeScreen.signUpBtn).toBeDisplayed()
+        await expect(this.welcomeScreen.signUpBtn).toBeDisplayed()
 
-        await expect(WelcomeScreen.continueAsVisiting).toBeDisplayed()
+        await expect(this.welcomeScreen.continueAsVisiting).toBeDisplayed()
     }
 
     async clickSignInBtn() {
-        await WelcomeScreen.singInBtn.click()
+        await this.welcomeScreen.singInBtn.click()
     }
 
     async clickSignUpBtn() {
-        await WelcomeScreen.signUpBtn.click()
+        await this.welcomeScreen.signUpBtn.click()
     }
 
     async clickContinueAsVisiting() {
-        await WelcomeScreen.continueAsVisiting.click()
+        await this.welcomeScreen.continueAsVisiting.click()
     }
 }
 
