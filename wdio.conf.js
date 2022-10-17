@@ -23,7 +23,7 @@ exports.config = {
     // then the current working directory is where your `package.json` resides, so `wdio`
     // will be called from there.
     //
-    specs: ['./test/specs/**/forgotYourNumberSmiles.spec.js'],
+    specs: ['./test/specs/**/welcome.spec.js'],
     // suites: {
     //     loggedOut: [
     //         './test/specs/**/welcome.spec.js',
@@ -62,7 +62,7 @@ exports.config = {
         'appium:platformVersion': '11',
         'appium:deviceName': 'Pixel 3a',
         'appium:automationName': 'UIAutomator2',
-        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.207.8.24484.apk'),
+        'appium:app': path.join(process.cwd(), './app/android/smiles-mobile-android-homolog-2.208.23.24510.apk'),
         'appium:autoGrantPermissions': true
     }],
     //

@@ -5,8 +5,8 @@ import SignInScreen from '../../elements/android/loggedOut/SignInScreen'
 import ForgotYourPasswordScreen from '../../elements/android/loggedOut/ForgotYourPasswordScreen'
 
 class forgotYourPasswordScript {
-    async acess() {
-        await WelcomeScript.acess()
+    async access() {
+        await WelcomeScript.access()
         await WelcomeScript.clickSignInBtn()
         await SignInScript.clickForgotPassword()
     }

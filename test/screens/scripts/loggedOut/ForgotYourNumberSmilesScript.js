@@ -4,8 +4,8 @@ import WelcomeScript from './WelcomeScript'
 import SignInScript from './SignInScript'
 
 class ForgotYourNumberSmilesScript {
-    async acess() {
-        await WelcomeScript.acess()
+    async access() {
+        await WelcomeScript.access()
         await WelcomeScript.clickSignInBtn()
         await SignInScript.clickForgotSmilesNumber()
     }
@@ -62,43 +62,67 @@ class ForgotYourNumberSmilesScript {
         await expect(welcomeTxt).toEqual('Seja bem-vindo.')
     }
 
-    async validateCpfErrorRequest(toggle) {
-        await expect(ForgotYourNumberSmilesScreen.modalTitle)
-            .toHaveText('Smiles')
+    // async validateCpfErrorRequest(cpfIsFilled) {
+    //     await expect(ForgotYourNumberSmilesScreen.modalTitle)
+    //         .toHaveText('Smiles')
 
-        toggle
-            ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('Usuário não cadastrado')
-            : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('É necessário informar seu CPF')
+    //     cpfIsFilled
+    //         ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('Usuário não cadastrado')
+    //         : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('É necessário informar seu CPF')
 
-        await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+    //     await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+    // }
+
+    // async validateBirthDateErrorRequest(birthDateIsFilled) {
+    //     await expect(ForgotYourNumberSmilesScreen.modalTitle)
+    //         .toHaveText('Smiles')
+
+    //     birthDateIsFilled
+    //         ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('Data de nascimento inválida')
+    //         : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('É necessário informar sua data de nascimento')
+
+    //     await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+    // }
+
+    // async validateEmailErrorRequest(emailIsFilled) {
+    //     await expect(ForgotYourNumberSmilesScreen.modalTitle)
+    //         .toHaveText('Smiles')
+
+    //     emailIsFilled
+    //         ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('E-mail inválido')
+    //         : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+    //             .toHaveText('É necessário informar seu e-mail')
+
+    //     await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+    // }
+
+    async validateCpfErrorRequest(cpfIsFilled) {
+        this.validateErrorRequest(cpfIsFilled, 'Usuário não cadastrado', 'É necessário informar seu CPF')
     }
 
-    async validateBirthDateErrorRequest(toggle) {
-        await expect(ForgotYourNumberSmilesScreen.modalTitle)
-            .toHaveText('Smiles')
-
-        toggle
-            ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('Data de nascimento inválida')
-            : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('É necessário informar sua data de nascimento')
-
-        await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+    async validateBirthDateErrorRequest(birthDateIsFilled) {
+        this.validateErrorRequest(birthDateIsFilled, 'Data de nascimento inválida', 'É necessário informar sua data de nascimento')
     }
 
-    async validateEmailErrorRequest(toggle) {
+    async validateEmailErrorRequest(emailIsFilled) {
+        this.validateErrorRequest(emailIsFilled, 'E-mail inválido', 'É necessário informar seu e-mail')
+    }
+
+    async validateErrorRequest(fieldIsFilled, textExpectedToFilled, textExpectedToNotFilled) {
         await expect(ForgotYourNumberSmilesScreen.modalTitle)
             .toHaveText('Smiles')
 
-        toggle
-            ? await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('E-mail inválido')
-            : await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
-                .toHaveText('É necessário informar seu e-mail')
-
-        await ForgotYourNumberSmilesScreen.modalOkBtn.click()
+        await expect(ForgotYourNumberSmilesScreen.modalInfoTxt)
+            .toHaveText(
+                fieldIsFilled
+                    ? textExpectedToFilled
+                    : textExpectedToNotFilled
+            )
     }
 }
 

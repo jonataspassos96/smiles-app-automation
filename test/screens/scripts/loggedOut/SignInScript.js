@@ -3,8 +3,8 @@ import SignInScreen from '../../elements/android/loggedOut/SignInScreen'
 // import CommonsScript from '../CommonsScript'
 
 class SignInScript {
-    async acess() {
-        await WelcomeScript.acess()
+    async access() {
+        await WelcomeScript.access()
         await WelcomeScript.clickSignInBtn()
     }
 

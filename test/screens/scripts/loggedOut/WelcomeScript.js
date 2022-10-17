@@ -1,7 +1,7 @@
 import WelcomeScreen from '../../elements/android/loggedOut/WelcomeScreen'
 
 class WelcomeScript {
-    async acess() {
+    async access() {
         await WelcomeScreen.btnIntroJump.click()
 
         if (await WelcomeScreen.btnDefaultPositive.isExisting()) {

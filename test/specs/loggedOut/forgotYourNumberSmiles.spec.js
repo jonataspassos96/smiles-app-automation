@@ -6,7 +6,7 @@ const { userHMG: user } = users
 
 describe('Fluxo de Esqueceu seu N˚ Smiles?', () => {
     beforeEach(async () => {
-        await ForgotYourNumberSmilesScript.acess()
+        await ForgotYourNumberSmilesScript.access()
     })
 
     describe('Brasileiros', () => {
