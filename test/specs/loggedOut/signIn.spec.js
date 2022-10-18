@@ -5,7 +5,7 @@ const { userHMG: user } = users
 
 describe('SignIn', () => {
     it('Deve entrar na tela de login e reenderizar todos os elementos', async () => {
-        await SignInScript.acess()
+        await SignInScript.access()
         await SignInScript.validateTheElementsDisplayedOnTheScreen()
     })
 

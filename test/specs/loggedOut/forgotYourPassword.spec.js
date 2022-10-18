@@ -8,7 +8,7 @@ const { userHMG: user } = users
 
 describe('FLuxo de Esqueceu sua senha?', () => {
     before(async () => {
-        await ForgotYourPasswordScript.acess()
+        await ForgotYourPasswordScript.access()
     })
 
     describe('Testando com usuário apto a responder os questionários', () => {
